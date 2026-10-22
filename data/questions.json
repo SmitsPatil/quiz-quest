@@ -1,0 +1,252 @@
+[
+  {
+    "id": "loc_1",
+    "category": "General Knowledge",
+    "difficulty": "easy",
+    "question": "Which planet in our solar system is known as the Red Planet?",
+    "options": ["Mars", "Venus", "Jupiter", "Saturn"],
+    "correct_answer": "Mars",
+    "explanation": "Mars appears reddish because of the large amount of iron oxide (rust) on its surface.",
+    "source": "Local Quest Vault"
+  },
+  {
+    "id": "loc_2",
+    "category": "General Knowledge",
+    "difficulty": "easy",
+    "question": "What is the largest ocean on Earth?",
+    "options": ["Pacific Ocean", "Atlantic Ocean", "Indian Ocean", "Arctic Ocean"],
+    "correct_answer": "Pacific Ocean",
+    "explanation": "The Pacific Ocean covers more than 30% of the Earth's surface and is larger than all land area combined.",
+    "source": "Local Quest Vault"
+  },
+  {
+    "id": "loc_3",
+    "category": "Computers & Tech",
+    "difficulty": "easy",
+    "question": "What does 'CPU' stand for in computer hardware?",
+    "options": ["Central Processing Unit", "Central Performance Utility", "Control Power Unit", "Core Program Unit"],
+    "correct_answer": "Central Processing Unit",
+    "explanation": "The CPU is the primary component that executes computer instructions and performs computations.",
+    "source": "Local Quest Vault"
+  },
+  {
+    "id": "loc_4",
+    "category": "Computers & Tech",
+    "difficulty": "easy",
+    "question": "Which programming language was created by Guido van Rossum?",
+    "options": ["Python", "Java", "C++", "Ruby"],
+    "correct_answer": "Python",
+    "explanation": "Guido van Rossum released Python in 1991, naming it after the British comedy troupe Monty Python.",
+    "source": "Local Quest Vault"
+  },
+  {
+    "id": "loc_5",
+    "category": "Science & Nature",
+    "difficulty": "easy",
+    "question": "What gas do plants absorb during photosynthesis?",
+    "options": ["Carbon Dioxide", "Oxygen", "Nitrogen", "Hydrogen"],
+    "correct_answer": "Carbon Dioxide",
+    "explanation": "Plants take in carbon dioxide and sunlight to produce glucose and release oxygen into the atmosphere.",
+    "source": "Local Quest Vault"
+  },
+  {
+    "id": "loc_6",
+    "category": "Geography",
+    "difficulty": "easy",
+    "question": "What is the capital city of Japan?",
+    "options": ["Tokyo", "Kyoto", "Osaka", "Nagoya"],
+    "correct_answer": "Tokyo",
+    "explanation": "Tokyo has been the capital and the seat of the Japanese government since 1868.",
+    "source": "Local Quest Vault"
+  },
+  {
+    "id": "loc_7",
+    "category": "History",
+    "difficulty": "easy",
+    "question": "Who was the first person to walk on the Moon?",
+    "options": ["Neil Armstrong", "Buzz Aldrin", "Yuri Gagarin", "Michael Collins"],
+    "correct_answer": "Neil Armstrong",
+    "explanation": "Neil Armstrong set foot on the lunar surface on July 20, 1969, during the Apollo 11 mission.",
+    "source": "Local Quest Vault"
+  },
+  {
+    "id": "loc_8",
+    "category": "Entertainment",
+    "difficulty": "easy",
+    "question": "Which fictional wizard attends Hogwarts School of Witchcraft and Wizardry?",
+    "options": ["Harry Potter", "Gandalf", "Merlin", "Doctor Strange"],
+    "correct_answer": "Harry Potter",
+    "explanation": "Harry Potter is the central protagonist created by J.K. Rowling.",
+    "source": "Local Quest Vault"
+  },
+  {
+    "id": "loc_9",
+    "category": "Computers & Tech",
+    "difficulty": "medium",
+    "question": "In networking, what does DNS stand for?",
+    "options": ["Domain Name System", "Dynamic Network Service", "Direct Node Server", "Data Network Standard"],
+    "correct_answer": "Domain Name System",
+    "explanation": "DNS translates human-readable domain names (like google.com) into numerical IP addresses.",
+    "source": "Local Quest Vault"
+  },
+  {
+    "id": "loc_10",
+    "category": "Science & Nature",
+    "difficulty": "medium",
+    "question": "What is the chemical symbol for table salt (Sodium Chloride)?",
+    "options": ["NaCl", "KCl", "NaOH", "CaCl2"],
+    "correct_answer": "NaCl",
+    "explanation": "Sodium (Na) combines with Chlorine (Cl) in a 1:1 ionic ratio to form common salt (NaCl).",
+    "source": "Local Quest Vault"
+  },
+  {
+    "id": "loc_11",
+    "category": "General Knowledge",
+    "difficulty": "medium",
+    "question": "How many bones are there in an adult human body?",
+    "options": ["206", "214", "198", "250"],
+    "correct_answer": "206",
+    "explanation": "Adult humans typically have 206 bones after several infant bones fuse together during growth.",
+    "source": "Local Quest Vault"
+  },
+  {
+    "id": "loc_12",
+    "category": "History",
+    "difficulty": "medium",
+    "question": "In what year did World War II end?",
+    "options": ["1945", "1939", "1918", "1948"],
+    "correct_answer": "1945",
+    "explanation": "World War II officially concluded in September 1945 following the surrender of Axis forces.",
+    "source": "Local Quest Vault"
+  },
+  {
+    "id": "loc_13",
+    "category": "Geography",
+    "difficulty": "medium",
+    "question": "Which is the longest river in the world?",
+    "options": ["Nile River", "Amazon River", "Yangtze River", "Mississippi River"],
+    "correct_answer": "Nile River",
+    "explanation": "The Nile River in northeast Africa flows approximately 6,650 kilometers (4,132 miles).",
+    "source": "Local Quest Vault"
+  },
+  {
+    "id": "loc_14",
+    "category": "Computers & Tech",
+    "difficulty": "medium",
+    "question": "What data structure operates on a 'First-In, First-Out' (FIFO) basis?",
+    "options": ["Queue", "Stack", "Binary Tree", "Heap"],
+    "correct_answer": "Queue",
+    "explanation": "A queue processes items in the exact order they arrive (FIFO), unlike a stack which uses LIFO.",
+    "source": "Local Quest Vault"
+  },
+  {
+    "id": "loc_15",
+    "category": "Entertainment",
+    "difficulty": "medium",
+    "question": "Which film won the first Academy Award for Best Animated Feature in 2002?",
+    "options": ["Shrek", "Monsters, Inc.", "Toy Story", "Finding Nemo"],
+    "correct_answer": "Shrek",
+    "explanation": "DreamWorks Animation's 'Shrek' won the inaugural award against Pixar's 'Monsters, Inc.'.",
+    "source": "Local Quest Vault"
+  },
+  {
+    "id": "loc_16",
+    "category": "Science & Nature",
+    "difficulty": "hard",
+    "question": "What is the speed of light in a vacuum (approximate value in km/s)?",
+    "options": ["300,000 km/s", "150,000 km/s", "1,000,000 km/s", "45,000 km/s"],
+    "correct_answer": "300,000 km/s",
+    "explanation": "The speed of light 'c' is precisely 299,792.458 km/s (roughly 300,000 km/s or 3x10^8 m/s).",
+    "source": "Local Quest Vault"
+  },
+  {
+    "id": "loc_17",
+    "category": "Computers & Tech",
+    "difficulty": "hard",
+    "question": "What is the time complexity of searching in a balanced Binary Search Tree (AVL/Red-Black)?",
+    "options": ["O(log n)", "O(n)", "O(1)", "O(n log n)"],
+    "correct_answer": "O(log n)",
+    "explanation": "Due to tree self-balancing, the maximum height is bounded by log2(n), giving O(log n) lookup.",
+    "source": "Local Quest Vault"
+  },
+  {
+    "id": "loc_18",
+    "category": "History",
+    "difficulty": "hard",
+    "question": "Which ancient civilization constructed the city of Machu Picchu?",
+    "options": ["Inca", "Maya", "Aztec", "Olmec"],
+    "correct_answer": "Inca",
+    "explanation": "Machu Picchu was built in the 15th century by the Inca Empire under Emperor Pachacuti.",
+    "source": "Local Quest Vault"
+  },
+  {
+    "id": "loc_19",
+    "category": "Geography",
+    "difficulty": "hard",
+    "question": "Which is the smallest recognized independent nation in the world by land area?",
+    "options": ["Vatican City", "Monaco", "Nauru", "San Marino"],
+    "correct_answer": "Vatican City",
+    "explanation": "Vatican City measures just 0.49 square kilometers (121 acres) within the city of Rome, Italy.",
+    "source": "Local Quest Vault"
+  },
+  {
+    "id": "loc_20",
+    "category": "Science & Nature",
+    "difficulty": "hard",
+    "question": "Which subatomic particle is exchanged by quarks to mediate the strong nuclear force?",
+    "options": ["Gluon", "Photon", "W Boson", "Graviton"],
+    "correct_answer": "Gluon",
+    "explanation": "Gluons act as exchange particles for the strong force between quarks, described by quantum chromodynamics.",
+    "source": "Local Quest Vault"
+  },
+  {
+    "id": "loc_21",
+    "category": "Computers & Tech",
+    "difficulty": "easy",
+    "question": "What does HTML stand for in web development?",
+    "options": ["HyperText Markup Language", "HighText Machine Language", "Hyperlink Text Mode Language", "Home Tool Markup Language"],
+    "correct_answer": "HyperText Markup Language",
+    "explanation": "HTML is the standard markup language used to structure web pages and their content.",
+    "source": "Local Quest Vault"
+  },
+  {
+    "id": "loc_22",
+    "category": "General Knowledge",
+    "difficulty": "medium",
+    "question": "Which element has the atomic number 1 on the periodic table?",
+    "options": ["Hydrogen", "Helium", "Lithium", "Carbon"],
+    "correct_answer": "Hydrogen",
+    "explanation": "Hydrogen has one proton in its nucleus, making it element number 1.",
+    "source": "Local Quest Vault"
+  },
+  {
+    "id": "loc_23",
+    "category": "Entertainment",
+    "difficulty": "hard",
+    "question": "Who composed the Four Seasons violin concertos?",
+    "options": ["Antonio Vivaldi", "Johann Sebastian Bach", "Wolfgang Amadeus Mozart", "Ludwig van Beethoven"],
+    "correct_answer": "Antonio Vivaldi",
+    "explanation": "Antonio Vivaldi composed 'The Four Seasons' (Le quattro stagioni) around 1720.",
+    "source": "Local Quest Vault"
+  },
+  {
+    "id": "loc_24",
+    "category": "Sports",
+    "difficulty": "easy",
+    "question": "How many players are on the field for one team in a standard soccer (football) match?",
+    "options": ["11", "9", "10", "12"],
+    "correct_answer": "11",
+    "explanation": "A standard soccer team fields 11 players, including one goalkeeper.",
+    "source": "Local Quest Vault"
+  },
+  {
+    "id": "loc_25",
+    "category": "Mythology",
+    "difficulty": "medium",
+    "question": "In Greek mythology, who is the goddess of wisdom and warfare?",
+    "options": ["Athena", "Aphrodite", "Hera", "Artemis"],
+    "correct_answer": "Athena",
+    "explanation": "Athena is the Olympian goddess of wisdom, courage, inspiration, and strategic warfare.",
+    "source": "Local Quest Vault"
+  }
+]

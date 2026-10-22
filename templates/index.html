@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Quest – AI-Powered Quiz Adventure</title>
+  <meta name="description" content="An interactive AI-powered quiz adventure game combining OpenTDB and Google Gemini AI.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <!-- Ambient Particle Canvas -->
+  <canvas id="particleCanvas"></canvas>
+  <canvas id="confettiCanvas"></canvas>
+
+  <div class="app-container">
+    <!-- Global Header -->
+    <header class="app-header">
+      <div class="brand" id="brandLogo" role="button" tabindex="0">
+        <span class="brand-icon">⚔️</span>
+        <span class="brand-text">QUIZ<span class="highlight">QUEST</span></span>
+      </div>
+      <div class="header-actions">
+        <button id="soundToggleBtn" class="icon-btn" title="Toggle Sound (M)" aria-label="Toggle Sound">
+          <span id="soundIcon">🔊</span>
+        </button>
+        <button id="navLeaderboardBtn" class="pill-btn glass" title="View Hall of Fame">
+          🏆 Leaderboard
+        </button>
+      </div>
+    </header>
+
+    <!-- MAIN SCREENS CONTAINER -->
+    <main class="main-content">
+      
+      <!-- 1. HOME SCREEN -->
+      <section id="homeScreen" class="screen active">
+        <div class="hero-content">
+          <div class="emblem-container">
+            <div class="emblem-ring"></div>
+            <div class="emblem-core">🧠</div>
+          </div>
+          <h1 class="hero-title">Embark on the <span class="gradient-text">Ultimate Quest</span> for Knowledge</h1>
+          <p class="hero-subtitle">
+            Harness the power of <strong>Google Gemini AI</strong> and <strong>Open Trivia DB</strong>.
+            Conquer 5 challenging realms, outsmart tricky enigmas, and carve your name into the Hall of Fame!
+          </p>
+          <div class="hero-actions">
+            <button id="startSetupBtn" class="btn btn-primary btn-glow btn-large">
+              <span>BEGIN QUEST</span> ➔
+            </button>
+            <button id="howToPlayBtn" class="btn btn-secondary glass btn-large">
+              <span>📖 How to Play</span>
+            </button>
+          </div>
+          
+          <!-- Live API Status Pills -->
+          <div class="status-ribbon">
+            <div class="status-pill" id="pillGemini">
+              <span class="dot"></span> 🤖 Gemini AI: <span class="state-text">Checking...</span>
+            </div>
+            <div class="status-pill" id="pillOpentdb">
+              <span class="dot"></span> 🌐 OpenTDB: <span class="state-text">Checking...</span>
+            </div>
+            <div class="status-pill" id="pillLocal">
+              <span class="dot"></span> 💾 Offline Vault: <span class="state-text">Ready</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. GAME SETUP SCREEN -->
+      <section id="setupScreen" class="screen">
+        <div class="card glass-card setup-card">
+          <div class="card-header">
+            <h2 class="card-title">⚙️ Configure Your Adventure</h2>
+            <p class="card-subtitle">Tailor the challenge before setting forth.</p>
+          </div>
+
+          <form id="setupForm" class="setup-form" onsubmit="return false;">
+            <!-- Player Name -->
+            <div class="form-group">
+              <label for="playerNameInput">Adventurer Name</label>
+              <input type="text" id="playerNameInput" class="input-text" maxlength="18" placeholder="Enter your hero name..." required>
+            </div>
+
+            <!-- Mode Selector -->
+            <div class="form-group">
+              <label>Select Game Mode</label>
+              <div class="segmented-control" id="modeSelector">
+                <button type="button" class="segment-btn active" data-mode="mixed">
+                  <span class="icon">✨</span>
+                  <span class="label">Mixed Mode</span>
+                  <small>Alternating APIs</small>
+                </button>
+                <button type="button" class="segment-btn" data-mode="classic">
+                  <span class="icon">🌐</span>
+                  <span class="label">Classic Mode</span>
+                  <small>OpenTDB Trivia</small>
+                </button>
+                <button type="button" class="segment-btn" data-mode="ai">
+                  <span class="icon">🤖</span>
+                  <span class="label">AI Mode</span>
+                  <small>Gemini Generative</small>
+                </button>
+              </div>
+            </div>
+
+            <!-- Category Selector -->
+            <div class="form-group">
+              <label for="categorySelect">Trivia Realm (Category)</label>
+              <select id="categorySelect" class="input-select">
+                <option value="All Categories">All Realms (Surprise Mixed)</option>
+                <option value="General Knowledge">General Knowledge</option>
+                <option value="Science & Nature">Science & Nature</option>
+                <option value="Computers & Tech">Computers & Tech</option>
+                <option value="History">History</option>
+                <option value="Geography">Geography</option>
+                <option value="Entertainment: Film">Entertainment: Film</option>
+                <option value="Entertainment: Music">Entertainment: Music</option>
+                <option value="Mythology">Mythology</option>
+                <option value="Sports">Sports</option>
+              </select>
+            </div>
+
+            <!-- Difficulty Selector -->
+            <div class="form-group">
+              <label>Difficulty Progression</label>
+              <div class="pill-group" id="difficultySelector">
+                <button type="button" class="pill-option active" data-diff="Progressive">
+                  ⭐ Progressive (Lvl 1 Easy ➔ Lvl 5 Hard)
+                </button>
+                <button type="button" class="pill-option" data-diff="Easy">Easy</button>
+                <button type="button" class="pill-option" data-diff="Medium">Medium</button>
+                <button type="button" class="pill-option" data-diff="Hard">Hard</button>
+              </div>
+            </div>
+
+            <!-- Questions Per Level / Total -->
+            <div class="form-group">
+              <label>Quest Length</label>
+              <div class="pill-group" id="lengthSelector">
+                <button type="button" class="pill-option active" data-length="15">
+                  Full Campaign (5 Levels • 15 Questions)
+                </button>
+                <button type="button" class="pill-option" data-length="10">
+                  Standard Quest (10 Questions)
+                </button>
+                <button type="button" class="pill-option" data-length="5">
+                  Quick Blitz (5 Questions)
+                </button>
+              </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="form-actions">
+              <button type="button" id="cancelSetupBtn" class="btn btn-secondary glass">Cancel</button>
+              <button type="submit" id="launchGameBtn" class="btn btn-primary btn-glow">
+                ENTER THE ARENA ➔
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- 3. GAMEPLAY SCREEN -->
+      <section id="gameScreen" class="screen">
+        <!-- HUD Bar -->
+        <div class="hud-bar glass-card">
+          <!-- Level & Progress -->
+          <div class="hud-item hud-level">
+            <span class="hud-label">REALM</span>
+            <span class="hud-value" id="hudLevelText">LEVEL 1 / 5</span>
+            <div class="progress-track">
+              <div class="progress-fill" id="hudProgressFill"></div>
+            </div>
+          </div>
+
+          <!-- Question Count -->
+          <div class="hud-item hud-counter">
+            <span class="hud-label">QUESTION</span>
+            <span class="hud-value" id="hudQuestionCount">1 / 15</span>
+          </div>
+
+          <!-- Timer with Ring -->
+          <div class="hud-item hud-timer">
+            <div class="timer-circle">
+              <svg viewBox="0 0 36 36" class="circular-chart">
+                <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                <path id="timerCircleProgress" class="circle" stroke-dasharray="100, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+              </svg>
+              <span id="timerSecondsText" class="timer-text">20</span>
+            </div>
+          </div>
+
+          <!-- Score -->
+          <div class="hud-item hud-score">
+            <span class="hud-label">SCORE</span>
+            <span class="hud-value gold-text" id="hudScoreText">0</span>
+          </div>
+
+          <!-- Lives Display -->
+          <div class="hud-item hud-lives">
+            <span class="hud-label">LIVES</span>
+            <div class="hearts-container" id="hudHearts">
+              <span class="heart active">❤️</span>
+              <span class="heart active">❤️</span>
+              <span class="heart active">❤️</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question Card -->
+        <div class="question-container">
+          <!-- Source Badge -->
+          <div class="badge-wrapper">
+            <span id="questionSourceBadge" class="source-badge">
+              <span class="badge-icon">🤖</span>
+              <span class="badge-name">Gemini AI</span>
+            </span>
+            <span id="questionCategoryTag" class="category-tag">Science & Nature • MEDIUM</span>
+          </div>
+
+          <!-- Main Question Box -->
+          <div class="card glass-card question-card">
+            <h2 id="questionText" class="question-text">Loading question from oracle...</h2>
+          </div>
+
+          <!-- 4 Multiple Choice Options -->
+          <div class="options-grid" id="optionsGrid">
+            <button class="option-card glass" data-index="0">
+              <span class="opt-letter">A</span>
+              <span class="opt-text">Option A</span>
+            </button>
+            <button class="option-card glass" data-index="1">
+              <span class="opt-letter">B</span>
+              <span class="opt-text">Option B</span>
+            </button>
+            <button class="option-card glass" data-index="2">
+              <span class="opt-letter">C</span>
+              <span class="opt-text">Option C</span>
+            </button>
+            <button class="option-card glass" data-index="3">
+              <span class="opt-letter">D</span>
+              <span class="opt-text">Option D</span>
+            </button>
+          </div>
+
+          <!-- Feedback & Explanation Card (Revealed after pick) -->
+          <div id="feedbackCard" class="card glass-card feedback-card hidden">
+            <div class="feedback-header">
+              <div class="feedback-status" id="feedbackStatus">
+                <span id="feedbackIcon">✔</span>
+                <span id="feedbackTitle">CORRECT! +10 Points</span>
+              </div>
+              <button id="continueQuestionBtn" class="btn btn-primary btn-glow">
+                CONTINUE ➔
+              </button>
+            </div>
+            <div class="explanation-content">
+              <span class="expl-label">💡 Knowledge Insight:</span>
+              <p id="explanationText" class="expl-text">...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. LEVEL TRANSITION / BOSS CHALLENGE MODAL -->
+      <div id="levelModal" class="modal-overlay hidden">
+        <div class="card glass-card modal-card level-modal-card">
+          <div class="level-badge-emblem">⚔️</div>
+          <h2 id="levelModalTitle" class="modal-title">LEVEL 1 CLEARED!</h2>
+          <p id="levelModalDesc" class="modal-subtitle">
+            You have mastered this realm. Advancing to the next tier of challenge...
+          </p>
+          <div class="level-stats-ribbon">
+            <div>Score: <strong id="levelStatsScore" class="gold-text">30</strong></div>
+            <div>Hearts: <strong id="levelStatsHearts">❤️❤️❤️</strong></div>
+          </div>
+          <button id="proceedNextLevelBtn" class="btn btn-primary btn-glow btn-large">
+            ASCEND TO NEXT LEVEL ➔
+          </button>
+        </div>
+      </div>
+
+      <!-- 5. RESULTS SCREEN (Victory / Game Over) -->
+      <section id="resultsScreen" class="screen">
+        <div class="card glass-card results-card">
+          <div class="results-header">
+            <div id="resultsEmblem" class="results-emblem">🏆</div>
+            <h1 id="resultsTitle" class="results-title">QUEST CONQUERED!</h1>
+            <p id="resultsSubtitle" class="results-subtitle">Grand Scholar of the Arena</p>
+          </div>
+
+          <!-- Stats Grid -->
+          <div class="stats-summary-grid">
+            <div class="stat-box glass">
+              <span class="stat-number gold-text" id="resultFinalScore">150</span>
+              <span class="stat-label">Final Score</span>
+            </div>
+            <div class="stat-box glass">
+              <span class="stat-number" id="resultAccuracy">100%</span>
+              <span class="stat-label">Accuracy</span>
+            </div>
+            <div class="stat-box glass">
+              <span class="stat-number" id="resultLevelReached">Level 5</span>
+              <span class="stat-label">Realm Conquered</span>
+            </div>
+            <div class="stat-box glass">
+              <span class="stat-number" id="resultSurvivalBonus">+60</span>
+              <span class="stat-label">Survival Bonus</span>
+            </div>
+          </div>
+
+          <!-- Leaderboard Submission Notice -->
+          <div id="submissionAlert" class="submission-alert glass">
+            <span>Score recorded in Hall of Fame for <strong id="savedPlayerName">Player</strong></span>
+          </div>
+
+          <div class="results-actions">
+            <button id="playAgainBtn" class="btn btn-primary btn-glow btn-large">
+              PLAY AGAIN ➔
+            </button>
+            <button id="resultsViewLeaderboardBtn" class="btn btn-secondary glass btn-large">
+              🏆 View Hall of Fame
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. LEADERBOARD SCREEN -->
+      <section id="leaderboardScreen" class="screen">
+        <div class="card glass-card leaderboard-card">
+          <div class="card-header">
+            <h2 class="card-title">🏆 Hall of Fame</h2>
+            <p class="card-subtitle">Top 10 High Scholars Across All Realms</p>
+          </div>
+
+          <div class="table-responsive">
+            <table class="leaderboard-table" id="leaderboardTable">
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Player</th>
+                  <th>Score</th>
+                  <th>Accuracy</th>
+                  <th>Level</th>
+                  <th>Mode</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody id="leaderboardTbody">
+                <!-- Dynamically populated rows -->
+              </tbody>
+            </table>
+          </div>
+
+          <div class="card-footer">
+            <button id="backFromLeaderboardBtn" class="btn btn-secondary glass">
+              ➔ Back to Menu
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. HOW TO PLAY MODAL -->
+      <div id="howToPlayModal" class="modal-overlay hidden">
+        <div class="card glass-card modal-card">
+          <div class="modal-header">
+            <h2 class="modal-title">📖 How to Play Quiz Quest</h2>
+            <button id="closeHelpModalBtn" class="icon-btn close-btn" aria-label="Close modal">✕</button>
+          </div>
+          <div class="modal-body help-body">
+            <div class="rule-step">
+              <span class="step-num">1</span>
+              <div>
+                <strong>Answer Multiple-Choice Questions:</strong> Each question offers 4 options. Click your answer or press keys <code>A, B, C, D</code> or <code>1, 2, 3, 4</code>.
+              </div>
+            </div>
+            <div class="rule-step">
+              <span class="step-num">2</span>
+              <div>
+                <strong>Scoring & Lives:</strong> Correct answers yield <code>+10 Points</code>. You start with <code>3 Lives</code>. Every mistake costs 1 life.
+              </div>
+            </div>
+            <div class="rule-step">
+              <span class="step-num">3</span>
+              <div>
+                <strong>5 Challenging Realms:</strong> Progress through escalating difficulty tiers from Level 1 (Easy) to Level 5 (Mastery).
+              </div>
+            </div>
+            <div class="rule-step">
+              <span class="step-num">4</span>
+              <div>
+                <strong>Dual-API Intelligence:</strong> In Mixed Mode, questions alternate between the <strong>Open Trivia DB</strong> and <strong>Google Gemini AI</strong> with instant offline fallback.
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button id="understoodHelpBtn" class="btn btn-primary btn-glow">I'M READY ➔</button>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Global Footer -->
+    <footer class="app-footer">
+      <span>Quiz Quest &copy; 2026 • Powered by Google Gemini AI & Open Trivia Database</span>
+    </footer>
+  </div>
+
+  <script src="/static/js/game.js"></script>
+</body>
+</html>

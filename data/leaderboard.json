@@ -1,0 +1,58 @@
+[
+  {
+    "name": "WebScholar",
+    "score": 350,
+    "accuracy": 92,
+    "level": 5,
+    "mode": "Mixed Mode",
+    "date": "2026-10-22"
+  },
+  {
+    "name": "QuizMaster",
+    "score": 150,
+    "accuracy": 100,
+    "level": 5,
+    "mode": "Mixed Mode",
+    "date": "2026-10-20"
+  },
+  {
+    "name": "AetherQuest",
+    "score": 130,
+    "accuracy": 92,
+    "level": 5,
+    "mode": "AI Mode",
+    "date": "2026-10-21"
+  },
+  {
+    "name": "CyberSage",
+    "score": 110,
+    "accuracy": 88,
+    "level": 4,
+    "mode": "Classic Mode",
+    "date": "2026-10-21"
+  },
+  {
+    "name": "PixelKnight",
+    "score": 90,
+    "accuracy": 82,
+    "level": 3,
+    "mode": "Mixed Mode",
+    "date": "2026-10-22"
+  },
+  {
+    "name": "QuizChampion",
+    "score": 80,
+    "accuracy": 80,
+    "level": 5,
+    "mode": "MIXED Mode",
+    "date": "2026-10-22"
+  },
+  {
+    "name": "NoviceScholar",
+    "score": 60,
+    "accuracy": 75,
+    "level": 2,
+    "mode": "Classic Mode",
+    "date": "2026-10-22"
+  }
+]
